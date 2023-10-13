@@ -3,7 +3,7 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-     <footer className="bg-lavender gap-1 flex justify-center items-center flex-col py-3">
+     <footer className="bg-cream gap-1 flex justify-center items-center flex-col py-3">
       <p className="text-rose text-2xl">
           Mom Meet Up 
       </p>

@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-lavender flex justify-between items-center px-4 h-[5rem]">
+    <header className="bg-cream flex justify-between shadow-xl items-center px-4 h-[5rem]">
       <div className="text-rose text-2xl">Mom Meet Up</div>
 
       {isMobile ? (
@@ -47,7 +47,7 @@ const Navbar = () => {
       )}
 
       <div className="flex items-center">
-        <UserButton />
+        <UserButton  afterSignOutUrl="/" />
       </div>
     </header>
   );
