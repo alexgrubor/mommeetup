@@ -9,7 +9,8 @@ const HeroSection = () => {
   const { isSignedIn } = useAuth();
 
   return (
-    <section className="text-center flex flex-col gap-1 md:gap-4 justify-center min-h-screen py-16 relative">
+    <section className="text-center flex flex-col gap-1 md:gap-4 justify-center min-h-screen py-16 relative overflow-hidden">
+      <div className="absolute top-9 left-[-34px] bg-rose px-8 transform rotate-[-45deg] z-10 text-cream">MOM&apos;S AREA</div>
       <div className="mx-auto p-5 flex flex-col items-center justify-center">
         <h1 className="text-4xl md:text-5xl lg:text-7xl text-rose font-semibold leading-tight mb-6 flex justify-center items-center gap-2">
           <span className="inline-block text-peach">
