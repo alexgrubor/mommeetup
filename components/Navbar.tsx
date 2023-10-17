@@ -1,5 +1,5 @@
 'use client'
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useAuth  } from "@clerk/nextjs";
 import { useResponsive } from "@/hooks/useResponsive";
 import { useState } from "react";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import {AiOutlineClose} from "react-icons/ai";
 import {MdMenu} from "react-icons/md";
 const Navbar = () => {
   const { isMobile } = useResponsive();
+  const {isSignedIn} = useAuth();
   const [isOpenMenu, setIsMenuOpen] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isOpenMenu);
@@ -36,7 +37,7 @@ const Navbar = () => {
       )}
 
       {isMobile && isOpenMenu && (
-        <div className="absolute top-[5rem] left-0 right-0 bg-lavender">
+        <div className="absolute top-[5rem] left-0 bg-lavender">
           <nav className="flex flex-col gap-2 text-xl p-4">
             <Link href="/">Home</Link>
             <Link href="/meetings">Meetings</Link>
@@ -47,7 +48,9 @@ const Navbar = () => {
       )}
 
       <div className="flex items-center">
-        <UserButton  afterSignOutUrl="/" />
+        {
+          isSignedIn ? <UserButton/> : <Link  className='text-rose text-xl' href="/sign-in"> Sign In</Link>
+        }
       </div>
     </header>
   );

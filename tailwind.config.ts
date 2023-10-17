@@ -19,6 +19,7 @@ const config: Config = {
         lavender: '#E6E6FA', 
         cream: '#FFF5E1',  
       },
+    
     },
   },
   plugins: [],
