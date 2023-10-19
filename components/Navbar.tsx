@@ -49,7 +49,7 @@ const Navbar = () => {
 
       <div className="flex items-center">
         {
-          isSignedIn ? <UserButton/> : <Link  className='text-rose text-xl' href="/sign-in"> Sign In</Link>
+          isSignedIn ? <UserButton afterSignOutUrl="/"/> : <Link  className='text-rose text-xl' href="/sign-in"> Sign In</Link>
         }
       </div>
     </header>
