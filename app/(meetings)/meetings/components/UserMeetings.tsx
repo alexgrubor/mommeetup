@@ -5,6 +5,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import format from "date-fns/format";
 import { addDays } from "date-fns";
+import UserCreated from "@/components/UserCreated";
 
 interface Meeting {
   id: string;
@@ -108,6 +109,9 @@ const UserMeetings = (): JSX.Element => {
             <p className="text-sm text-gray-600">Notes: {upcomingMeeting[0].notes}</p>
             <p className="text-sm text-pink-600">#{upcomingMeeting[0].category}</p>
           </div>
+          <UserCreated 
+            id={upcomingMeeting[0].createdBy}
+          />
         </div>
       )}
 
