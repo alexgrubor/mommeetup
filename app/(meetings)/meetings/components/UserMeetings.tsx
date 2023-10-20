@@ -16,6 +16,9 @@ interface Meeting {
   createdBy: string;
   time: string;
   duration: string;
+  remote: boolean;
+  public: boolean;
+  category: string;
 }
 
 const UserMeetings = (): JSX.Element => {
@@ -103,6 +106,7 @@ const UserMeetings = (): JSX.Element => {
               Location: {upcomingMeeting[0].location}
             </p>
             <p className="text-sm text-gray-600">Notes: {upcomingMeeting[0].notes}</p>
+            <p className="text-sm text-pink-600">#{upcomingMeeting[0].category}</p>
           </div>
         </div>
       )}

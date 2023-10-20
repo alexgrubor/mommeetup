@@ -25,6 +25,20 @@ import {
 import { Time } from "@internationalized/date";
 import PlacesAutocomplete from "react-places-autocomplete";
 import { useJsApiLoader } from "@react-google-maps/api";
+
+const categories = [
+  "playgrounds",
+  "parenting support",
+  "book club",
+  "self-care",
+  "education",
+  "DIY",
+  "cooking",
+  "local",
+  "hobby",
+  "other",
+];
+
 const CreateMeetingForm = () => {
   const { userId } = useAuth();
   const [formData, setFormData] = useState({
@@ -38,7 +52,8 @@ const CreateMeetingForm = () => {
   const [duration, setDurationValue] = useState(1);
   const [location, setLocation] = useState("");
   const [isMeetingRemote, setMeetingRemote] = useState(false);
-  const [isMeetingPublic, setMeetingPublic]= useState(true)
+  const [isMeetingPublic, setMeetingPublic] = useState(true);
+  const [category, setCategory] = useState(categories[0]);
 
   const handleLocationChange = (value: any) => {
     setLocation(value);
@@ -69,8 +84,8 @@ const CreateMeetingForm = () => {
       duration: duration.toString(),
       createdBy: userId,
       remote: isMeetingRemote,
-      public: isMeetingPublic
-
+      public: isMeetingPublic,
+      category: category,
     };
 
     try {
@@ -268,8 +283,8 @@ const CreateMeetingForm = () => {
             )}
           </PlacesAutocomplete>
         )}
-        
-       <Switch
+
+        <Switch
           onChange={(value) => {
             setMeetingPublic(value);
           }}
@@ -292,10 +307,28 @@ const CreateMeetingForm = () => {
             </span>
           </div>
         </Switch>
-        <Switch onChange={(value) => {
+        <Switch
+          onChange={(value) => {
             setMeetingPublic(value);
-          }} className="flex justify-between"
-       ></Switch>
+          }}
+          className="flex justify-between"
+        ></Switch>
+        <div className="mb-4 flex justify-between items-center">
+          <label className="text-gray-600">Category</label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            name="category"
+            id="category"
+            className="p-2 border bg-white border-gray-300 rounded-md focus:outline-none focus:border-rose"
+          >
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="mb-4 flex justify-between items-center">
           <label htmlFor="notes" className="text-gray-600">
             Notes

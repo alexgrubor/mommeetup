@@ -17,7 +17,7 @@ export async function POST(req: Request) {
         },
       }
     );
-  const { title, date, location, attendees, notes, time, duration, remote, publicMeeting } = body;
+  const { title, date, location, attendees, notes, time, duration, remote, publicMeeting, category } = body;
   if (!title  || !date || !location)
     return new NextResponse(
       JSON.stringify({
@@ -44,7 +44,8 @@ export async function POST(req: Request) {
       time, 
       duration, 
       remote, 
-      public : publicMeeting
+      public : publicMeeting,
+      category
     } as any,
   });
 

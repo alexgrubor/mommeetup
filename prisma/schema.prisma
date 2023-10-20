@@ -23,5 +23,19 @@ model Meeting {
   createdBy String 
   remote    Boolean @default(false)
   public    Boolean @default(true)
+  category  category
+}
+
+enum category {
+  playgrounds
+  parenting_support
+  book_club
+  self_care
+  education
+  DIY
+  cooking
+  local
+  hobby
+  other
 }
 
