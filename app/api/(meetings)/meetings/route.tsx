@@ -31,7 +31,7 @@ export async function POST(req: Request) {
       }
     );
     const adjustedDate = new Date(date);
-    adjustedDate.setDate(adjustedDate.getDate() + 1);
+    adjustedDate.setDate(adjustedDate.getDate());
     
   const meeting = await prismadb.meeting.create({
     data: {
@@ -49,6 +49,39 @@ export async function POST(req: Request) {
   return new NextResponse(
     JSON.stringify({
       meeting,
+    }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+}
+
+
+export async function GET (req : Request){
+  const { userId } = auth();
+  if (!userId)
+    return new NextResponse(
+      JSON.stringify({
+        error: "Unauthorized. You must be logged in to do that",
+      }),
+      {
+        status: 401,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  const meetings = await prismadb.meeting.findMany({
+    where: {
+      createdBy: userId,
+    },
+  });
+  return new NextResponse(
+    JSON.stringify({
+      meetings,
     }),
     {
       status: 200,

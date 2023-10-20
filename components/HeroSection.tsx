@@ -39,7 +39,7 @@ const HeroSection = () => {
         <div className="flex justify-center">
           {isSignedIn ? (
             <Link
-              href="/meeting"
+              href="/meetings"
               className="bg-rose border-2 border-black  py-2 px-4 rounded-full text-lg md:text-xl lg:text-2xl hover:bg-peach hover:text-cream transition duration-300"
             >
               Create a meeting
