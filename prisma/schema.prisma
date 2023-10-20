@@ -21,5 +21,7 @@ model Meeting {
   location  String
   notes     String?
   createdBy String 
+  remote    Boolean @default(false)
+  public    Boolean @default(true)
 }
 

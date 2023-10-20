@@ -38,6 +38,7 @@ const CreateMeetingForm = () => {
   const [duration, setDurationValue] = useState(1);
   const [location, setLocation] = useState("");
   const [isMeetingRemote, setMeetingRemote] = useState(false);
+  const [isMeetingPublic, setMeetingPublic]= useState(true)
 
   const handleLocationChange = (value: any) => {
     setLocation(value);
@@ -67,6 +68,9 @@ const CreateMeetingForm = () => {
       time: timeValue.toString(),
       duration: duration.toString(),
       createdBy: userId,
+      remote: isMeetingRemote,
+      public: isMeetingPublic
+
     };
 
     try {
@@ -264,7 +268,34 @@ const CreateMeetingForm = () => {
             )}
           </PlacesAutocomplete>
         )}
-
+        
+       <Switch
+          onChange={(value) => {
+            setMeetingPublic(value);
+          }}
+          className="flex justify-between"
+        >
+          <label className="text-gray-600">Is meeting public?</label>
+          <div
+            className={`relative inline-block w-14 h-6  border border-gray-300 rounded-full p-1 cursor-pointer 
+          `}
+          >
+            <span
+              className={`text-sm absolute flex justify-center items-center px-2 ${
+                isMeetingPublic
+                  ? "text-rose right-0 top-2"
+                  : "text-gray-600 left-0 top-2"
+              }`}
+              style={{ lineHeight: "5px" }}
+            >
+              {isMeetingPublic ? "Yes" : "No"}
+            </span>
+          </div>
+        </Switch>
+        <Switch onChange={(value) => {
+            setMeetingPublic(value);
+          }} className="flex justify-between"
+       ></Switch>
         <div className="mb-4 flex justify-between items-center">
           <label htmlFor="notes" className="text-gray-600">
             Notes

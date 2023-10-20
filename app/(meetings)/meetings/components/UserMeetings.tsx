@@ -62,6 +62,14 @@ const UserMeetings = (): JSX.Element => {
     setSelectedDate(new Date());
   };
 
+  const upcomingMeeting = meetings
+    .filter((meeting) => {
+      const meetingDate = new Date(meeting.date);
+      const today = new Date();
+      return meetingDate > today;
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   if (!meetings.length) return <p>No meetings found</p>;
@@ -70,21 +78,33 @@ const UserMeetings = (): JSX.Element => {
     <div className="mx-auto md:mx-0">
       <h2 className="text-2xl text-rose">Your meetings</h2>
       {meetings.length > 0 && (
-         <div className="bg-white rounded-lg p-4 shadow-md">
-         <h3 className="text-3xl font-semibold text-gray-800">Your Next Meeting</h3>
-         <div className="border-t border-gray-300 mt-4">
-           <h4 className="text-xl font-semibold text-rose my-2">{meetings[0].title}</h4>
-           <p className="text-sm text-gray-600">
-             Date: {format(addDays(new Date(meetings[0].date.split("T")[0]), 1), 'dd/MM/yyyy')}
-           </p>
-           <p className="text-sm text-gray-600">
-             Time: from {meetings[0].time.split(":")[0]}:{meetings[0].time.split(":")[1]} until{' '}
-             {+meetings[0].time.split(":")[0] + +meetings[0].duration}:{meetings[0].time.split(":")[1]}
-           </p>
-           <p className="text-sm text-gray-600">Location: {meetings[0].location}</p>
-           <p className="text-sm text-gray-600">Notes: {meetings[0].notes}</p>
-         </div>
-       </div>
+        <div className="bg-white rounded-lg p-4 shadow-md">
+          <h3 className="text-3xl font-semibold text-gray-800">
+            Your Next Meeting
+          </h3>
+          <div className="border-t border-gray-300 mt-4">
+            <h4 className="text-xl font-semibold text-rose my-2">
+              {upcomingMeeting[0].title}
+            </h4>
+            <p className="text-sm text-gray-600">
+              Date:{" "}
+              {format(
+                addDays(new Date(upcomingMeeting[0].date.split("T")[0]), 1),
+                "dd/MM/yyyy"
+              )}
+            </p>
+            <p className="text-sm text-gray-600">
+              Time: from {upcomingMeeting[0].time.split(":")[0]}:
+              {upcomingMeeting[0].time.split(":")[1]} until{" "}
+              {+upcomingMeeting[0].time.split(":")[0] + +upcomingMeeting[0].duration}:
+              {upcomingMeeting[0].time.split(":")[1]}
+            </p>
+            <p className="text-sm text-gray-600">
+              Location: {upcomingMeeting[0].location}
+            </p>
+            <p className="text-sm text-gray-600">Notes: {upcomingMeeting[0].notes}</p>
+          </div>
+        </div>
       )}
 
       <div className="mt-5 relative">
