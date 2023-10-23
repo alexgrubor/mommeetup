@@ -25,19 +25,8 @@ import {
 import { Time } from "@internationalized/date";
 import PlacesAutocomplete from "react-places-autocomplete";
 import { useJsApiLoader } from "@react-google-maps/api";
+import { categories } from "@/lib/categories";
 
-const categories = [
-  "playgrounds",
-  "parenting support",
-  "book club",
-  "self-care",
-  "education",
-  "DIY",
-  "cooking",
-  "local",
-  "hobby",
-  "other",
-];
 
 const CreateMeetingForm = () => {
   const { userId } = useAuth();
@@ -86,6 +75,7 @@ const CreateMeetingForm = () => {
       remote: isMeetingRemote,
       public: isMeetingPublic,
       category: category,
+      
     };
 
     try {

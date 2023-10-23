@@ -11,19 +11,20 @@ datasource db {
 }
 
 model Meeting {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   title     String
   date      DateTime
-  duration   String?
+  duration  String?
   time      String?
   location  String
   notes     String?
-  createdBy String 
-  remote    Boolean @default(false)
-  public    Boolean @default(true)
+  createdBy String
+  remote    Boolean    @default(false)
+  public    Boolean    @default(true)
   category  category
+  attendees Attendee[]
 }
 
 enum category {
@@ -39,3 +40,9 @@ enum category {
   other
 }
 
+model Attendee {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String
+  meeting   Meeting @relation(fields: [meetingId], references: [id])
+  meetingId String  @db.ObjectId
+}

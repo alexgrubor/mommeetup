@@ -2,13 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('/path/to/open-sans-regular.woff2') format('woff2');
-  }
+
   
   body {
     font-family: 'Open Sans', sans-serif;

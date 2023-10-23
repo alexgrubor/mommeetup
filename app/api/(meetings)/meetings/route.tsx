@@ -78,9 +78,7 @@ export async function GET (req : Request){
       }
     );
   const meetings = await prismadb.meeting.findMany({
-    where: {
-      createdBy: userId,
-    },
+   
   });
   return new NextResponse(
     JSON.stringify({
@@ -94,3 +92,7 @@ export async function GET (req : Request){
     }
   );
 }
+
+
+
+

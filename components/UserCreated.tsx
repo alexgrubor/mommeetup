@@ -14,10 +14,10 @@ const UserCreated = ({ id }: { id: string }) => {
 
       try {
         const response = await axios.post("/api/webhook/user", { userId: id });
-        console.log(response);
-
+       if (response?.data) {
         setUser(response.data);
         setLoading(false);
+       }
       } catch (error: any) {
         setError(error.message);
         setLoading(false);
