@@ -31,7 +31,7 @@ const Navbar = () => {
         <nav className="flex gap-5 text-xl">
           <Link href="/">Home</Link>
           <Link href="/meetings">Meetings</Link>
-          <Link href="/forums">Forums</Link>
+          <Link href="/forum">Forum</Link>
           <Link href="/chats">Chats</Link>
         </nav>
       )}
