@@ -46,3 +46,14 @@ model Attendee {
   meeting   Meeting @relation(fields: [meetingId], references: [id])
   meetingId String  @db.ObjectId
 }
+
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String
+  subcategory String
+  creatorId String
+}
