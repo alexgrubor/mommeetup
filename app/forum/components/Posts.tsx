@@ -26,6 +26,17 @@ const Posts = ({ subcategory }: PostsProps) => {
   }, [subcategory]);
   return (
     <Link href={"/forum/post"} className="cursor-pointer">
+      {
+        posts.length === 0 && (
+          <div className="flex flex-col border-2 my-3 rounded-md p-4 shadow-md shadow-lavender ">
+            <div className="flex gap-2 items-center justify-between ">
+              <div className="flex gap-2 items-center">
+                <h2>There are no posts yet</h2>
+              </div>
+            </div>
+          </div>
+        )
+      }
       {posts.map((post, index) => (
         <div
           key={index}
